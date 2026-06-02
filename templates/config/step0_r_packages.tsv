@@ -1,0 +1,42 @@
+group	package	source	ref
+cran_core	yaml	cran	
+cran_core	jsonlite	cran	
+cran_core	stringr	cran	
+cran_core	tibble	cran	
+cran_core	tidyr	cran	
+cran_core	dplyr	cran	
+cran_core	ggplot2	cran	
+cran_core	scales	cran	
+cran_core	viridis	cran	
+cran_core	RColorBrewer	cran	
+cran_core	patchwork	cran	
+cran_core	ggrepel	cran	
+cran_core	ggpubr	cran	
+cran_core	pheatmap	cran	
+cran_core	png	cran	
+cran_analysis	babelgene	cran	
+cran_analysis	circlize	cran	
+cran_analysis	future	cran	
+cran_analysis	harmony	cran	
+cran_analysis	igraph	cran	
+cran_analysis	msigdbr	cran	
+cran_analysis	RANN	cran	
+cran_analysis	Seurat	cran	
+cran_analysis	SeuratObject	cran	
+cran_analysis	tidyverse	cran	
+cran_analysis	uwot	cran	
+bioc_core	AnnotationDbi	bioc	
+bioc_core	Biobase	bioc	
+bioc_core	BiocParallel	bioc	
+bioc_core	SingleCellExperiment	bioc	
+bioc_core	SummarizedExperiment	bioc	
+bioc_analysis	clusterProfiler	bioc	
+bioc_analysis	ComplexHeatmap	bioc	
+bioc_analysis	DESeq2	bioc	
+bioc_analysis	enrichplot	bioc	
+bioc_analysis	KEGGREST	bioc	
+bioc_analysis	Mfuzz	bioc	
+bioc_analysis	org.Hs.eg.db	bioc	
+bioc_analysis	org.Mm.eg.db	bioc	
+github	monocle3	github	cole-trapnell-lab/monocle3
+github	CellChat	github	sqjin/CellChat

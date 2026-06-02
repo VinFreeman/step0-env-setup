@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "step0-env-setup project config",
+  "type": "object",
+  "required": [
+    "profile",
+    "remote_alias",
+    "remote_root",
+    "env_name",
+    "env_prefix",
+    "allowed_prefix_root",
+    "conda_dir",
+    "conda_channels",
+    "bootstrap_yaml",
+    "r_package_plan",
+    "conda_fallback_map"
+  ],
+  "properties": {
+    "profile": { "type": "string" },
+    "remote_alias": { "type": "string" },
+    "remote_root": { "type": "string" },
+    "env_name": { "type": "string" },
+    "env_prefix": { "type": "string" },
+    "allowed_prefix_root": { "type": "string" },
+    "conda_dir": { "type": "string" },
+    "connection_min_spacing_seconds": { "type": "integer", "minimum": 0 },
+    "connection_max_attempts_per_minute": { "type": "integer", "minimum": 1 },
+    "conda_channels": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "bootstrap_yaml": { "type": "string" },
+    "r_package_plan": { "type": "string" },
+    "conda_fallback_map": { "type": "string" },
+    "deferred_python_packages": { "type": "array", "items": { "type": "string" } },
+    "validate_r_packages": { "type": "array", "items": { "type": "string" } },
+    "validate_python_modules": { "type": "array", "items": { "type": "string" } },
+    "install_ncpus": { "type": "integer", "minimum": 1 },
+    "max_dependency_depth": { "type": "integer", "minimum": 0 },
+    "force_recreate": { "type": "boolean" },
+    "fail_on_validation": { "type": "boolean" },
+    "cran_mirror": { "type": "string" },
+    "bioc_mirror": { "type": "string" }
+  },
+  "additionalProperties": true
+}

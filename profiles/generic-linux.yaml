@@ -1,0 +1,12 @@
+name: generic-linux
+description: Generic remote Linux account with account-owned Miniconda.
+remote_alias: remote-alias
+remote_root: ~/proj_example
+env_name: step0
+env_prefix: ~/conda_envs/step0
+allowed_prefix_root: ~/conda_envs
+conda_dir: ~/miniconda3
+connection_min_spacing_seconds: 20
+connection_max_attempts_per_minute: 4
+install_ncpus: 2
+max_dependency_depth: 3

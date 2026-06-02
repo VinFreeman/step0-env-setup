@@ -1,0 +1,12 @@
+name: gx4
+description: SXY GX4 shared server defaults based on the st_human_breast_cancer_remote setup.
+remote_alias: sxy-gx4-151-ys005
+remote_root: ~/proj_example
+env_name: st1
+env_prefix: /data/ys005/conda_envs/st1
+allowed_prefix_root: /data/ys005/conda_envs
+conda_dir: /data/ys005/miniconda3
+connection_min_spacing_seconds: 20
+connection_max_attempts_per_minute: 4
+install_ncpus: 2
+max_dependency_depth: 3

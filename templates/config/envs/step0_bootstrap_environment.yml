@@ -1,0 +1,20 @@
+name: {{ENV_NAME}}
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip
+  - pyyaml
+  - r-base=4.3
+  - r-remotes
+  - r-biocmanager
+  - r-devtools
+  - r-yaml
+  - r-jsonlite
+  - r-matrix
+  - r-rcpp
+  - r-curl
+  - r-openssl
+  - r-xml2

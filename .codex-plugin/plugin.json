@@ -1,0 +1,18 @@
+{
+  "name": "step0-env-setup",
+  "version": "0.1.0+codex.20260602013007",
+  "description": "Reusable step0 environment setup scaffolder for remote conda/R bioinformatics projects.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Step0 Env Setup",
+    "shortDescription": "Initialize reproducible remote conda/R step0 setup workflows.",
+    "longDescription": "Step0 Env Setup generates a project-local, logged, monitorable environment setup workflow from centralized templates. It favors bootstrap-only conda creation, isolated condarc handling, per-package R installation logs, one-by-one fallback, and remote-safe launch/check scripts.",
+    "developerName": "Freeman local",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Use step0-env-setup to initialize or validate a reusable step0 environment setup workflow."
+  }
+}

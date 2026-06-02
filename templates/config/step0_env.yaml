@@ -1,0 +1,46 @@
+profile: {{PROFILE}}
+remote_alias: {{REMOTE_ALIAS}}
+remote_root: {{REMOTE_ROOT}}
+
+env_name: {{ENV_NAME}}
+env_prefix: {{ENV_PREFIX}}
+allowed_prefix_root: {{ALLOWED_PREFIX_ROOT}}
+conda_dir: {{CONDA_DIR}}
+
+connection_min_spacing_seconds: {{CONNECTION_MIN_SPACING_SECONDS}}
+connection_max_attempts_per_minute: {{CONNECTION_MAX_ATTEMPTS_PER_MINUTE}}
+
+conda_channels:
+  - conda-forge
+  - bioconda
+
+bootstrap_yaml: config/envs/step0_bootstrap_environment.yml
+r_package_plan: config/step0_r_packages.tsv
+conda_fallback_map: config/step0_conda_fallback.tsv
+deferred_python_packages:
+  - numpy
+  - pandas
+  - matplotlib
+  - opencv
+  - pyside2
+
+validate_r_packages:
+  - Seurat
+  - monocle3
+  - CellChat
+  - org.Hs.eg.db
+  - org.Mm.eg.db
+validate_python_modules:
+  - numpy
+  - pandas
+  - matplotlib
+  - cv2
+  - PySide2
+
+install_ncpus: {{INSTALL_NCPUS}}
+max_dependency_depth: {{MAX_DEPENDENCY_DEPTH}}
+force_recreate: false
+fail_on_validation: false
+
+cran_mirror: https://cloud.r-project.org
+bioc_mirror: https://bioconductor.org
