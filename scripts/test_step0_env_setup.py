@@ -45,11 +45,40 @@ def test_plugin_manifest_skill_and_repo_docs_exist():
         "docs/ARCHITECTURE.md",
         "docs/EXTENDING.md",
         "docs/RELEASE.md",
+        "docs/STEP0_ENV_SETUP_PLUGIN_USER_GUIDE.md",
         "schemas/step0_env.schema.json",
         "profiles/gx4.yaml",
         "profiles/generic-linux.yaml",
     ]:
         assert (PLUGIN_ROOT / rel).exists(), rel
+
+
+def test_docs_record_rna_velocity_extension_lessons():
+    guide = (PLUGIN_ROOT / "docs" / "STEP0_ENV_SETUP_PLUGIN_USER_GUIDE.md").read_text(encoding="utf-8")
+    extending = (PLUGIN_ROOT / "docs" / "EXTENDING.md").read_text(encoding="utf-8")
+    combined = guide + "\n" + extending
+
+    for marker in [
+        "RNA velocity",
+        "velocyto",
+        "scVelo",
+        "CellRank",
+        "cellrank==2.0.7",
+        "Python 3.11",
+        "conda prefix",
+        "DirectoryNotACondaEnvironmentError",
+        "numpy",
+        "cython",
+        "--no-build-isolation",
+        "TBB_INTERFACE_VERSION",
+        "scipy",
+        "spliced/unspliced",
+        "BAM",
+        "GTF",
+        "不要重建",
+        "bounded",
+    ]:
+        assert marker in combined, marker
 
 
 def test_cli_lists_template_files():
@@ -175,6 +204,7 @@ def test_package_command_creates_portable_archive():
 if __name__ == "__main__":
     tests = [
         test_plugin_manifest_skill_and_repo_docs_exist,
+        test_docs_record_rna_velocity_extension_lessons,
         test_cli_lists_template_files,
         test_cli_lists_profiles_and_profile_defaults,
         test_init_generates_project_without_known_bad_patterns,

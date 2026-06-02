@@ -535,7 +535,40 @@ skills\step0-env-setup\SKILL.md
 
 修改后重新打开 Codex 或新建对话，让技能列表刷新。
 
-## 15. 如何发布一个更新版本
+## 15. 如何把项目踩坑沉淀回插件
+
+`step0-env-setup` 不只保存最初的 conda/R bootstrap 经验，也应该记录后续环境扩展中的通用问题。原则是：
+
+```text
+项目里验证过的通用安装经验，要回写到插件文档、模板或测试。
+项目特有路径、日志和样本名，不要硬编码进插件。
+```
+
+例如在已有 `st1` 环境中扩展 RNA velocity 工具时，遇到并验证过这些问题：
+
+- `velocyto`、`scVelo`、`CellRank` 可以作为 Python 侧 RNA velocity 工具链加入已有环境，但不代表马上可以分析；还需要 BAM 或 FASTQ、GTF、barcode/sample metadata，并先生成 spliced/unspliced count。
+- 对 Python 3.11 环境，不要直接装未固定版本的最新版 CellRank；应固定 `cellrank==2.0.7`，避免 Python 版本兼容性漂移。
+- 如果已有 prefix 里 `python`、`pip`、`R` 可用，但 `conda install -p <prefix>` 报 `DirectoryNotACondaEnvironmentError`，不要为了装几个 Python 包重建环境；可以写独立脚本使用该 prefix 自带的 `python -m pip`。
+- `velocyto` 从源码构建时可能在 setup 阶段需要 `numpy` 和 `cython`，因此应先安装它们，再对 `velocyto` 使用 `--no-build-isolation`。
+- `CellRank` 依赖可能触发 `scipy` 等包版本变化，必须在日志和状态文件里记录，例如 `scipy` 被调整到其他版本。
+- 导入 `scvelo`、`velocyto` 或 `cellrank` 时可能出现 Numba/TBB 警告，例如 `TBB_INTERFACE_VERSION` 太低导致 TBB threading layer 被禁用；这通常是性能/线程 caveat，不等同于安装失败。
+- 下载大 wheel 时可能出现网络超时和 resume；此时应使用 bounded monitor 查看日志增长，不要重复启动安装。
+- 核心原则是不要重建已经恢复可用的环境；优先做可回溯、可验证、可监控的原位扩展。
+
+推荐把这种扩展做成一组小文件：
+
+```text
+run/install_<env>_<tool>.sh
+run/verify_<env>_<tool>.sh
+run/check_<env>_<tool>.sh
+run/sync_<env>_<tool>_to_remote.ps1
+tests/test_<env>_<tool>_policy.ps1
+docs/superpowers/plans/YYYY-MM-DD-<tool>-env.md
+```
+
+每个脚本都应拒绝错误 env name，保留日志和状态文件，避免重建已有环境，避免复杂 SSH one-liner，并把下一步安全命令写进项目 handoff。
+
+## 16. 如何发布一个更新版本
 
 建议每次稳定改动都提交到 GitHub：
 
@@ -556,13 +589,13 @@ python scripts\step0_env_setup.py package --output dist\step0-env-setup.zip
 
 这样即使另一台电脑暂时没有 git，也可以直接复制 zip 解压使用。
 
-## 16. 常见问题
+## 17. 常见问题
 
-### 16.1 SSH key 页面为什么没有 README、.gitignore、license
+### 17.1 SSH key 页面为什么没有 README、.gitignore、license
 
 因为那是 GitHub 的 SSH key 管理页面，只负责添加公钥。README、`.gitignore`、license 只在新建仓库页面出现。
 
-### 16.2 `git push` 报 Repository not found
+### 17.2 `git push` 报 Repository not found
 
 常见原因：
 
@@ -577,7 +610,7 @@ git remote -v
 ssh -T git@github.com
 ```
 
-### 16.3 自然语言没有触发插件
+### 17.3 自然语言没有触发插件
 
 可能原因：
 
@@ -592,7 +625,7 @@ ssh -T git@github.com
 - 重启 Codex 或新建对话。
 - 必要时直接用 CLI。
 
-### 16.4 新电脑没有 GitHub SSH
+### 17.4 新电脑没有 GitHub SSH
 
 先用 HTTPS 克隆：
 
@@ -602,7 +635,7 @@ git clone https://github.com/VinFreeman/step0-env-setup.git $HOME\plugins\step0-
 
 以后需要 push 时，再配置 SSH 或 GitHub token。
 
-## 17. 推荐长期工作方式
+## 18. 推荐长期工作方式
 
 长期建议遵循这个原则：
 
